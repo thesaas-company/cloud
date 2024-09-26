@@ -15,32 +15,31 @@ spec:
       labels:
         {{- include "thesaas-company.selectorLabels" . | nindent 8 }}
     spec:
-      serviceAccountName: {{ include "thesaas-company.serviceAccountName" . }}
+      serviceAccountName: {{ .Values.serviceAccount.name | default "default-service-account" }}
       containers:
         - name: {{ .Chart.Name }}
+          command: ["/app/saas"]
+          args: ["serve", "-id", "{{ .Values.id }}"]  # Added argument here
           env:
-            {{- if .Values.secretName }}
+
             - name: SAAS_COMPANY_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.secret.name }}
+                  name: {{ include "thesaas-company.fullname" . }}-secret
                   key: token
-            {{- end }}
+
 
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy | default "IfNotPresent" }}
-          ports:
-            - name: http
-              containerPort: {{ .Values.service.port | default 80 }}
-              protocol: TCP
+
           livenessProbe:
             httpGet:
               path: /
-              port: http
+              port: 80  # Changed port to 80 for liveness check
           readinessProbe:
             httpGet:
               path: /
-              port: http
+              port: 80  # Changed port to 80 for readiness check
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
