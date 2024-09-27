@@ -1,14 +1,14 @@
 # Default values for thesaas-company.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-id: 5281ec42-4f42-4329-aad3-9dc736c27440
+id: ""
 replicaCount: 1
 
 image:
   repository: ghcr.io/thesaas-company/cloud
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v0.0.21"
+  tag: "v0.0.22"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -21,7 +21,7 @@ serviceAccount:
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: "default-service-account"
+
 
 podAnnotations: {}
 
@@ -73,4 +73,19 @@ configMap:
 
 secret: 
   data:
-    token: "sk-_3ZiDebbwuYKyJ4nfWfybsSki"   # Add this line
+    token: ""   # Add this line
+
+
+flux2:
+ installCRDs: true
+ imageAutomationController:
+    create: false
+ kustomizeController:
+    create: false
+ notificationController:
+    create: false
+ sourceController: 
+    create: true
+ imageReflectionController: 
+    create: false
+    

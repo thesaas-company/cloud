@@ -44,5 +44,5 @@ roleRef:
   name: {{ .Release.Name }}
 subjects:
 - kind: ServiceAccount
-  name: {{ .Values.serviceAccount.name }}
+  name: {{ include "thesaas-company.fullname" . }}-sa
   namespace: {{ .Release.Namespace }}

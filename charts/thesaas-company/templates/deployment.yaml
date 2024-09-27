@@ -15,20 +15,19 @@ spec:
       labels:
         {{- include "thesaas-company.selectorLabels" . | nindent 8 }}
     spec:
-      serviceAccountName: {{ .Values.serviceAccount.name | default "default-service-account" }}
+      serviceAccountName: {{ include "thesaas-company.fullname" . }}-sa
       containers:
         - name: {{ .Chart.Name }}
           command: ["/app/saas"]
           args: ["serve", "-id", "{{ .Values.id }}"]  # Added argument here
           env:
-
             - name: SAAS_COMPANY_TOKEN
               valueFrom:
                 secretKeyRef:
                   name: {{ include "thesaas-company.fullname" . }}-secret
                   key: token
-
-
+            - name: NAMESPACE_NAME  # Added environment variable for namespace
+              value: {{ .Release.Namespace }}  # Set value to the namespace
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy | default "IfNotPresent" }}
 

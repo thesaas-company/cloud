@@ -1,0 +1,39 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: bkrunner
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "thesaas-company.labels" . | nindent 4 }}
+spec:
+  interval: 10m
+  url: oci://ghcr.io/buildkite/helm/agent-stack-k8s
+  ref:
+    tag: "0.15.0"
+
+---
+
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: buildkit
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "thesaas-company.labels" . | nindent 4 }}
+spec:
+  interval: 1m
+  url: https://andrcuns.github.io/charts
+
+
+---
+
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: ghrunner
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "thesaas-company.labels" . | nindent 4 }}
+spec:
+  interval: 1m
+  url: https://actions-runner-controller.github.io/actions-runner-controller
