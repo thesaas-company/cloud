@@ -3,6 +3,16 @@ entries:
   thesaas-company:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2024-09-27T17:10:44.736416753Z"
+    description: A Helm chart for TheSaaS Company application
+    digest: 7ae6ebb92cf83cfd38f5675fc2a732ddc47e24c9564a7a7dde3a1131cc1d3067
+    name: thesaas-company
+    type: application
+    urls:
+    - https://thesaas-company.github.io/cloud/thesaas-company-v0.0.30.tgz
+    version: v0.0.30
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2024-09-27T15:26:31.183260013Z"
     description: A Helm chart for TheSaaS Company application
     digest: c56867e2c56e9155613f93c98463848b4007f02efd8fcf420ec5a7880d7aa2e3
@@ -51,4 +61,4 @@ entries:
     urls:
     - https://thesaas-company.github.io/cloud/thesaas-company-v0.0.2.tgz
     version: v0.0.2
-generated: "2024-09-27T15:26:31.182331756Z"
+generated: "2024-09-27T17:10:44.735721035Z"
