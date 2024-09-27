@@ -4,7 +4,7 @@ metadata:
   name: {{ include "thesaas-company.fullname" . }}-sa
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "thesaas-company.selectorLabels" . | nindent 4 }}
+    {{- include "thesaas-company.labels" . | nindent 4 }}
   {{- with .Values.serviceAccount.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
