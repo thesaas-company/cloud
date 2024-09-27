@@ -75,8 +75,10 @@ secret:
   data:
     token: ""   # Add this line
 
-
+certManager:
+ enabled: true
 flux2:
+ enabled: true
  installCRDs: true
  imageAutomationController:
     create: false
