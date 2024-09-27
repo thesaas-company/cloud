@@ -4,7 +4,7 @@ metadata:
   name: {{ include "thesaas-company.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "thesaas-company.labels" . | nindent 4 }}
+    {{- include "thesaas-company.selectorLabels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount | default 1 }}
   selector:

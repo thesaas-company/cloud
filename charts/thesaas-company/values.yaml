@@ -8,7 +8,7 @@ image:
   repository: ghcr.io/thesaas-company/cloud
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v0.0.22"
+  tag: "v0.0.24"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -75,9 +75,11 @@ secret:
   data:
     token: ""   # Add this line
 
-certManager:
+cert-manager:
  enabled: true
-flux2:
+ crds:
+  enabled: true
+flux:
  enabled: true
  installCRDs: true
  imageAutomationController:

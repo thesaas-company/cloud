@@ -4,7 +4,7 @@ metadata:
   name: bkrunner
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "thesaas-company.labels" . | nindent 4 }}
+    {{- include "thesaas-company.selectorLabels" . | nindent 4 }}
 spec:
   interval: 10m
   url: oci://ghcr.io/buildkite/helm/agent-stack-k8s
@@ -19,7 +19,7 @@ metadata:
   name: buildkit
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "thesaas-company.labels" . | nindent 4 }}
+    {{- include "thesaas-company.selectorLabels" . | nindent 4 }}
 spec:
   interval: 1m
   url: https://andrcuns.github.io/charts
@@ -33,7 +33,8 @@ metadata:
   name: ghrunner
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "thesaas-company.labels" . | nindent 4 }}
+    {{- include "thesaas-company.selectorLabels" . | nindent 4 }}
+    {{- include "thesaas-company.selectorLabels" . | nindent 4 }}
 spec:
   interval: 1m
   url: https://actions-runner-controller.github.io/actions-runner-controller
