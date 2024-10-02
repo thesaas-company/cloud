@@ -5,6 +5,8 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "thesaas-company.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": post-install
 spec:
   interval: 10m
   url: oci://ghcr.io/buildkite/helm/agent-stack-k8s
@@ -20,6 +22,8 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "thesaas-company.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": post-install
 spec:
   interval: 1m
   url: https://andrcuns.github.io/charts
@@ -34,6 +38,8 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "thesaas-company.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": post-install
 spec:
   interval: 1m
   url: https://actions-runner-controller.github.io/actions-runner-controller
