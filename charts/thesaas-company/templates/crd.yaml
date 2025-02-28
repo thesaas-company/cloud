@@ -12,6 +12,21 @@ spec:
   url: oci://ghcr.io/buildkite/helm/agent-stack-k8s
   ref:
     tag: "0.15.0"
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: karpenter
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "thesaas-company.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": post-install
+spec:
+  interval: 10m
+  url: oci://public.ecr.aws/karpenter/karpenter
+  ref:
+    tag: "1.0.5"
 
 ---
 
